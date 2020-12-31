@@ -1,0 +1,11 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile_frontend
+    volumes:
+      - ./react-sample:/usr/src/app/react-sample
+      - /usr/src/app/react-sample/node_modules # use data volume to separate node_modules directory between hostOS and guestOS
+    command: sh -c "cd react-sample && npm install &&yarn start"
+    ports:
+      - "3000:3000"
